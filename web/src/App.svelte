@@ -6,6 +6,8 @@
   import Login from "./Components/Login.svelte";
   import { currentUser, login, logout } from "./stores/userStore";
 
+  const port = 8000;
+
   let now = new Date().toISOString().substring(11, 16);
   let dayName = new Date().toISOString().substring(0, 10);
 
@@ -16,7 +18,7 @@
   let myMsg = "";
 
   async function sendRequest() {
-    const response = await fetch("http://localhost:8080/send-message", {
+    const response = await fetch(`http://localhost:${port}/send-message`, {
       method: "POST",
       body: JSON.stringify({
         user: $currentUser,
